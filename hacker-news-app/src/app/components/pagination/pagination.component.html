@@ -1,0 +1,32 @@
+<div class="pagination-container" *ngIf="totalPages > 1">
+  <div class="pagination-info">
+    Showing {{ startItem }} to {{ endItem }} of {{ totalCount }} stories
+  </div>
+  
+  <div class="pagination-controls">
+    <button 
+      (click)="onPageChange(currentPage - 1)" 
+      [disabled]="currentPage <= 1"
+      class="pagination-button"
+    >
+      Previous
+    </button>
+
+    <button 
+      *ngFor="let page of getVisiblePages()" 
+      (click)="onPageChange(page)"
+      [class.active]="page === currentPage"
+      class="pagination-button page-number"
+    >
+      {{ page }}
+    </button>
+
+    <button 
+      (click)="onPageChange(currentPage + 1)" 
+      [disabled]="currentPage >= totalPages"
+      class="pagination-button"
+    >
+      Next
+    </button>
+  </div>
+</div>

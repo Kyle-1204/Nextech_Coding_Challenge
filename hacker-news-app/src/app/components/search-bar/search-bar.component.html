@@ -1,0 +1,13 @@
+<div class="search-container">
+  <div class="search-input-group">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      placeholder="Search stories..." 
+      class="search-input"
+      (keyup.enter)="onSearch()"
+    />
+    <button (click)="onSearch()" class="search-button">Search</button>
+    <button (click)="onClear()" class="clear-button" *ngIf="searchTerm">Clear</button>
+  </div>
+</div>

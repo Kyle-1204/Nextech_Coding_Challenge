@@ -1,0 +1,59 @@
+<div class="story-list-container">
+  <div class="header">
+    <h1>Hacker News - Newest Stories</h1>
+    <p class="subtitle">Stay up to date with the latest tech stories</p>
+  </div>
+
+  <app-search-bar (searchChange)="onSearchChange($event)"></app-search-bar>
+
+  <div *ngIf="loading" class="loading">
+    <div class="loading-spinner"></div>
+    <p>Loading stories...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadStories()" class="retry-button">Try Again</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="stories-container">
+    <div *ngIf="stories.length === 0" class="no-stories">
+      <p>No stories found. Try adjusting your search terms.</p>
+    </div>
+
+    <div *ngIf="stories.length > 0">
+      <div class="story-card" *ngFor="let story of stories; trackBy: trackByStoryId">
+        <div class="story-header">
+          <h3 class="story-title">
+            <a *ngIf="hasValidUrl(story)" [href]="story.url" target="_blank" rel="noopener noreferrer">
+              {{ story.title }}
+              <span class="external-link-icon">↗</span>
+            </a>
+            <span *ngIf="!hasValidUrl(story)" class="no-link-title">
+              {{ story.title }}
+              <span class="no-link-badge">(No Link)</span>
+            </span>
+          </h3>
+        </div>
+        
+        <div class="story-meta">
+          <span class="score">{{ story.score }} points</span>
+          <span class="separator">•</span>
+          <span class="author">by {{ story.by || 'Unknown' }}</span>
+          <span class="separator">•</span>
+          <span class="time">{{ getTimeAgo(story.createdAt) }}</span>
+          <span class="separator">•</span>
+          <span class="comments">{{ story.descendants || 0 }} comments</span>
+        </div>
+      </div>
+
+      <app-pagination 
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        [totalCount]="totalCount"
+        [pageSize]="pageSize"
+        (pageChange)="onPageChange($event)">
+      </app-pagination>
+    </div>
+  </div>
+</div>
