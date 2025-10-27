@@ -1,8 +1,10 @@
 **Overview**
+
 This program uses the Hacker News API to allow users to view the newest stories on their feed. To accomplish this, we implement a front-end UI using Angular that calls a C# .NET Core back-end restful API.
 
 
 **How to Run**
+
 All in separate terminals:
 1. Start the Backend
 - cd C:\code\Nextech_Coding_Challenge\HackerNewsApi
@@ -25,6 +27,7 @@ All in separate terminals:
 
 
 **Requirements**
+
 Using the Hacker News API, create a solution that allows users to view the newest stories from the feed.
  
 Your solution must be developed using an Angular front-end app that calls a C# .NET Core back-end restful API.
@@ -51,6 +54,7 @@ While we would love seeing an Angular only solution to this problem, we really n
 
 
 **Project Structure**
+
 Nextech_Coding_Challenge
 - HackerNewsApi\ # .NetCore Backend
     - Controllers\
@@ -89,5 +93,6 @@ Nextech_Coding_Challenge
 
 
 **Final Thoughts**
+
 This was an extremely fulfilling project to complete! While it was initially intimidating starting this project from scratch, the project flowed very smoothly. In particular, the Hacker News API was well-documented and easy to use, and my past experiences with Angular and .Net frameworks came into play. In the end, I view this project as an amalgamation of the skills and techniques I've learned throughout my time at Nextech. I am looking forward to seeing how my skills continue to develop during my time in this company, and I am happy to discuss more about the project in detail if interested. Thank you once again for this opportunity, and I look forward to speaking with you soon!
 
