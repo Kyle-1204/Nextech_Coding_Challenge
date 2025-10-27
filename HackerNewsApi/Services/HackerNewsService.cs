@@ -5,12 +5,13 @@ using System.Text.Json;
 
 namespace HackerNewsApi.Services
 {
+    // Service for fetching data from Hacker News API
     public class HackerNewsService : IHackerNewsService
     {
         private readonly HttpClient _httpClient;
         private readonly IMemoryCache _cache;
         private readonly ILogger<HackerNewsService> _logger;
-        private const string BaseUrl = "https://hacker-news.firebaseio.com/v0";
+        private const string BaseUrl = "https://hacker-news.firebaseio.com/v0"; //from Hacker API
         private const string NewestStoriesCacheKey = "newest_stories";
         private const int CacheExpirationMinutes = 10;
 
@@ -21,15 +22,16 @@ namespace HackerNewsApi.Services
             _logger = logger;
         }
 
+        // Returns story response and filters by title and paginatin
         public async Task<StoriesResponse> GetNewestStoriesAsync(int page = 1, int pageSize = 20, string? searchTerm = null)
         {
             try
             {
                 var storyIds = await GetNewestStoryIdsAsync();
-                
+
                 // Apply search filter if provided
                 var filteredStories = new List<HackerNewsItem>();
-                
+
                 if (!string.IsNullOrEmpty(searchTerm))
                 {
                     // For search, we need to get all stories first, then filter
@@ -46,10 +48,10 @@ namespace HackerNewsApi.Services
                 }
 
                 var totalCount = string.IsNullOrEmpty(searchTerm) ? storyIds.Count() : filteredStories.Count;
-                
+
                 // Apply pagination to filtered results
-                var pagedStories = string.IsNullOrEmpty(searchTerm) 
-                    ? filteredStories 
+                var pagedStories = string.IsNullOrEmpty(searchTerm)
+                    ? filteredStories
                     : filteredStories.Skip((page - 1) * pageSize).Take(pageSize);
 
                 return new StoriesResponse
@@ -66,6 +68,8 @@ namespace HackerNewsApi.Services
                 throw;
             }
         }
+        
+        // Helper Methods
 
         public async Task<HackerNewsItem?> GetStoryByIdAsync(int id)
         {

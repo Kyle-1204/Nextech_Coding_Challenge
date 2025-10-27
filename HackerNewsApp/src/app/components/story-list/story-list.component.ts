@@ -32,6 +32,7 @@ export class StoryListComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
+    // Loads stories from Hacker News Service
     this.hackerNewsService.getNewestStories(this.currentPage, this.pageSize, this.searchTerm)
       .subscribe({
         next: (response: StoriesResponse) => {
@@ -64,10 +65,13 @@ export class StoryListComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // "Watch out for stories that do not have hyperlinks!"
   hasValidUrl(story: HackerNewsItem): boolean {
     return !!(story.url && story.url.trim());
   }
 
+  // Source:
+  // https://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
   getTimeAgo(date: Date): string {
     const now = new Date();
     const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hacker-news-app": {
+    "HackerNewsApp": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/hacker-news-app",
+            "outputPath": "dist/HackerNewsApp",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hacker-news-app:build:production"
+              "buildTarget": "HackerNewsApp:build:production"
             },
             "development": {
-              "buildTarget": "hacker-news-app:build:development"
+              "buildTarget": "HackerNewsApp:build:development"
             }
           },
           "defaultConfiguration": "development"

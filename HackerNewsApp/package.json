@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:hacker-news-app": "node dist/hacker-news-app/server/server.mjs"
+    "serve:ssr:HackerNewsApp": "node dist/HackerNewsApp/server/server.mjs"
   },
   "private": true,
   "dependencies": {

@@ -1,17 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppComponent } from './app.component';
 import { StoryListComponent } from './components/story-list/story-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         AppComponent,
-        RouterTestingModule,
-        HttpClientTestingModule,
-        StoryListComponent
+        StoryListComponent,
+        HttpClientTestingModule
       ],
     }).compileComponents();
   });
@@ -22,10 +20,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'hacker-news-app' title`, () => {
+  it(`should have the 'HackerNewsApp' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('hacker-news-app');
+    expect(app.title).toEqual('HackerNewsApp');
   });
 
   it('should render app container', () => {

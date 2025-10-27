@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace HackerNewsApi.Models
 {
-    public class HackerNewsItem
+    public class HackerNewsItem // Model for Hacker News story/item
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }

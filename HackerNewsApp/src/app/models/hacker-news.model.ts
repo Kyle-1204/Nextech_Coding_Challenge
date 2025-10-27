@@ -1,3 +1,4 @@
+// Models for items and responses
 export interface HackerNewsItem {
   id: number;
   title?: string;

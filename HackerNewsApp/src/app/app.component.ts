@@ -10,5 +10,5 @@ import { StoryListComponent } from './components/story-list/story-list.component
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'hacker-news-app';
+  title = 'HackerNewsApp';
 }

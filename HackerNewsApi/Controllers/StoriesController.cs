@@ -2,6 +2,7 @@ using HackerNewsApi.Models;
 using HackerNewsApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
+// Controller - handles API requests
 namespace HackerNewsApi.Controllers
 {
     [ApiController]
@@ -17,18 +18,12 @@ namespace HackerNewsApi.Controllers
             _logger = logger;
         }
 
-        /// <summary>
-        /// Get the newest stories from Hacker News
-        /// </summary>
-        /// <param name="page">Page number (default: 1)</param>
-        /// <param name="pageSize">Number of stories per page (default: 20, max: 50)</param>
-        /// <param name="search">Search term to filter stories by title</param>
-        /// <returns>Paginated list of newest stories</returns>
+        // Returns paginated list of newest stories
         [HttpGet("newest")]
         public async Task<ActionResult<StoriesResponse>> GetNewestStories(
-            [FromQuery] int page = 1, 
-            [FromQuery] int pageSize = 20, 
-            [FromQuery] string? search = null)
+            [FromQuery] int page = 1, // Page Number
+            [FromQuery] int pageSize = 20, //Number of stories per page
+            [FromQuery] string? search = null) // Filters by title
         {
             try
             {
@@ -53,11 +48,7 @@ namespace HackerNewsApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Get a specific story by ID
-        /// </summary>
-        /// <param name="id">Story ID</param>
-        /// <returns>Story details</returns>
+        // REturns a specific story by its ID
         [HttpGet("{id}")]
         public async Task<ActionResult<HackerNewsItem>> GetStoryById(int id)
         {
@@ -69,7 +60,7 @@ namespace HackerNewsApi.Controllers
                 }
 
                 var story = await _hackerNewsService.GetStoryByIdAsync(id);
-                
+
                 if (story == null)
                 {
                     return NotFound($"Story with ID {id} not found");

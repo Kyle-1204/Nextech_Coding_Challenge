@@ -1,6 +1,7 @@
 using HackerNewsApi.Services;
 using Microsoft.OpenApi.Models;
 
+//DI Container setup
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,10 +13,15 @@ builder.Services.AddHttpClient<IHackerNewsService, HackerNewsService>();
 // Add memory caching
 builder.Services.AddMemoryCache();
 
-// Register services
+// Register services - *adds dependency injection to services*
+// Meaning - when IHackerNewsService is requested, provides instance of HackerNewsService
+// add scope - new instance per request
 builder.Services.AddScoped<IHackerNewsService, HackerNewsService>();
 
-// Add CORS
+// Source for Cors setup:
+// https://stackoverflow.com/questions/31942037/how-to-enable-cors-in-asp-net-core
+
+// Add CORS - *add Cors policy to allow Angular app access*
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
@@ -26,7 +32,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -50,7 +55,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Use CORS
+// Use CORS - *add to middleware
 app.UseCors("AllowAngularApp");
 
 app.UseAuthorization();
@@ -59,5 +64,5 @@ app.MapControllers();
 
 app.Run();
 
-// Make the Program class public for testing
+// public program class - f or testing
 public partial class Program { }
